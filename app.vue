@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <!-- Markup shared across all pages, ex: NavBar -->
-    <AppHeader></AppHeader>
+  <NuxtLayout>
     <NuxtPage />
-  </div>
+  </NuxtLayout>
 </template>
 
 <script setup lang="ts"></script>
