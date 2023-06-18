@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-white dark:bg-gray-900 relative">
+  <footer class="bg-white dark:bg-gray-900">
     <div
       class="container flex flex-col items-center justify-between px-6 py-8 mx-auto lg:flex-row"
     >
@@ -16,20 +16,20 @@
       >
         <NuxtLink
           to="/tours"
-          class="text-sm text-gray-600 transition-colors duration-300 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400"
+          class="text-sm font-semibold text-gray-600 transition-colors duration-300 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400"
         >
           Горящие туры
         </NuxtLink>
 
         <NuxtLink
           to="/reviews"
-          class="text-sm text-gray-600 transition-colors duration-300 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400"
+          class="text-sm font-semibold text-gray-600 transition-colors duration-300 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400"
         >
           Отзывы
         </NuxtLink>
         <NuxtLink
           to="/about"
-          class="text-sm text-gray-600 transition-colors duration-300 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400"
+          class="text-sm font-semibold text-gray-600 transition-colors duration-300 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400"
         >
           О компании
         </NuxtLink>
