@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\TourPhotoController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +46,16 @@ Route::get('tours/{tour}/photos', [TourPhotoController::class, 'index']); //
 Route::post('tours/{tour}/photos', [TourPhotoController::class, 'store']); //
 Route::get('tours/{tour}/photos/{tourPhoto}', [TourPhotoController::class, 'show']); // 
 Route::put('tours/{tour}/photos/{tourPhoto}', [TourPhotoController::class, 'update']); //
-Route::delete('tours/{tour}/photos/{tourPhoto}', [TourPhotoController::class, 'destroy']);//
+Route::delete('tours/{tour}/photos/{tourPhoto}', [TourPhotoController::class, 'destroy']); //
+
+/*
+ |
+ | CRUD операции для отзывов
+ |
+*/
+
+Route::get('reviews', [ReviewController::class, 'index']); //
+Route::post('reviews', [ReviewController::class, 'store']); //
+Route::get('reviews/{review}', [ReviewController::class, 'show']); // 
+Route::put('reviews/{review}', [ReviewController::class, 'update']); //
+Route::delete('reviews/{review}', [ReviewController::class, 'destroy']); //
