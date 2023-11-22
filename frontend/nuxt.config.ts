@@ -1,10 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
   // devtools: { enabled: true },
   $development: {
-    modules: ["@sidebase/nuxt-auth", "nuxt-headlessui"],
-    auth: {
-      origin: "http://localhost:3000/",
+    modules: ["nuxt-headlessui"],
+    runtimeConfig: {
+      public: {
+        backendUrl: "http://localhost:8000",
+        frontendUrl: "http://localhost:3000",
+      },
     },
     app: {
       head: {

@@ -6,6 +6,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+// use Illuminate\Auth\AuthenticationException;
 
 class Handler extends ExceptionHandler
 {
@@ -55,5 +56,17 @@ class Handler extends ExceptionHandler
                 ], 404);
             }
         });
+        // $this->renderable(function (AuthenticationException $exception, Request $request) {
+        //     if ($request->is('api/*')) {
+        //         if ($exception instanceof AuthenticationException) {
+        //             return $request->expectsJson() ?:
+        //                 response()->json([
+        //                     'message' => 'Unauthenticated.',
+        //                     'status' => 401,
+        //                     'Description' => 'Missing or Invalid Access Token'
+        //                 ], 401);
+        //         }
+        //     }
+        // });
     }
 }

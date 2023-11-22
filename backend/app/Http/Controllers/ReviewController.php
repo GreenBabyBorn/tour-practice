@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FilesRequest;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Http\Resources\ReviewResource;
+use Illuminate\Auth\Events\Validated;
+use Illuminate\Support\Facades\Validator;
 
 class ReviewController extends Controller
 {
