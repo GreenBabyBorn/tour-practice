@@ -68,7 +68,7 @@ export const useAuth = <T = User>() => {
     await $larafetch("/logout", { method: "post" });
     user.value = null;
 
-    await router.push("/login");
+    await router.push("/cabinet/login");
   }
 
   async function forgotPassword(email: string) {

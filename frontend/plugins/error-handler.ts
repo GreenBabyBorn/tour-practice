@@ -7,11 +7,11 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     const status = error.response?.status ?? -1;
 
     if ([401, 419].includes(status)) {
-      navigateTo("/login");
+      navigateTo("/cabinet/login");
     }
 
     if ([409].includes(status)) {
-      navigateTo("/verify-email");
+      navigateTo("/cabinet/verify-email");
     }
   });
 });

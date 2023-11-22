@@ -16,7 +16,7 @@
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" action="#" method="POST">
+      <form class="space-y-6" @submit.prevent="submit">
         <div>
           <label
             for="fio"
@@ -29,9 +29,12 @@
               name="fio"
               type="text"
               autocomplete="fio"
-              required=""
+              required
+              v-model="data.name"
+              autoFocus
               class="block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
             />
+            {{ errors.name }}
           </div>
         </div>
         <div>
@@ -46,9 +49,11 @@
               name="email"
               type="email"
               autocomplete="email"
-              required=""
+              required
+              v-model="data.email"
               class="block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
             />
+            {{ errors.email }}
           </div>
         </div>
 
@@ -66,9 +71,11 @@
               name="password"
               type="password"
               autocomplete="current-password"
-              required=""
+              required
+              v-model="data.password"
               class="block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
             />
+            {{ errors.password }}
           </div>
         </div>
         <div>
@@ -85,15 +92,18 @@
               name="repeat-password"
               type="password"
               autocomplete="current-password"
-              required=""
+              required
+              v-model="data.password_confirmation"
               class="block w-full rounded-md border-0 px-1.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
             />
+            {{ errors.password_confirmation }}
           </div>
         </div>
 
         <div>
           <button
             type="submit"
+            :disabled="inProgress"
             class="flex w-full justify-center rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
           >
             Зарегистрироваться
@@ -117,5 +127,24 @@
 <script setup lang="ts">
 definePageMeta({
   layout: "admin",
+  middleware: ["guest"],
+});
+
+const router = useRouter();
+const { register } = useAuth();
+
+const data = reactive({
+  name: "",
+  email: "",
+  password: "",
+  password_confirmation: "",
+});
+
+const {
+  submit,
+  inProgress,
+  validationErrors: errors,
+} = useSubmit(() => register(data), {
+  onSuccess: () => router.push("/dashboard"),
 });
 </script>

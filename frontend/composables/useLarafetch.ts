@@ -13,11 +13,11 @@ export function useLarafetch<T>(
       }
 
       if ([401, 419].includes(status)) {
-        navigateTo("/login");
+        navigateTo("/cabinet/login");
       }
 
       if ([409].includes(status)) {
-        navigateTo("/verify-email");
+        navigateTo("/cabinet/verify-email");
       }
     },
     ...options,

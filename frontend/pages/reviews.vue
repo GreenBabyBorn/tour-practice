@@ -163,7 +163,9 @@
                 'flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600',
               ]"
             >
-              <span class="sr-only">Agree to policies</span>
+              <span class="sr-only"
+                >Я соглашаюсь с пользовательским&nbsp;соглашением</span
+              >
               <span
                 aria-hidden="true"
                 :class="[
@@ -184,8 +186,9 @@
       </div>
       <div class="mt-10">
         <button
+          :disabled="!agreed"
           type="submit"
-          class="block w-full rounded-md bg-green-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+          class="block w-full rounded-md bg-green-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 disabled:opacity-50"
         >
           Отправить
         </button>
