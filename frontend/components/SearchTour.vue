@@ -9,7 +9,7 @@
           >
             <ComboboxInput
               class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
-              :displayValue="(person) => person.name"
+              :displayValue="(person: any) => person.name"
               @change="queryFrom = $event.target.value"
             />
             <ComboboxButton
@@ -86,7 +86,7 @@
           >
             <ComboboxInput
               class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
-              :displayValue="(person) => person.name"
+              :displayValue="(person: any) => person.name"
               @change="queryTo = $event.target.value"
             />
             <ComboboxButton
@@ -159,7 +159,7 @@
         <ListboxLabel>Пассажиры</ListboxLabel>
         <div class="relative mt-1">
           <ListboxButton
-            class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
+            class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-green-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-green-300 sm:text-sm"
           >
             <span class="block truncate">{{ selectedPassengers.id }}</span>
             <span
@@ -189,7 +189,7 @@
               >
                 <li
                   :class="[
-                    active ? 'bg-amber-100 text-amber-900' : 'text-gray-900',
+                    active ? 'bg-green-100 text-green-900' : 'text-gray-900',
                     'relative cursor-default select-none py-2 pl-10 pr-4',
                   ]"
                 >
@@ -202,7 +202,7 @@
                   >
                   <span
                     v-if="selected"
-                    class="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600"
+                    class="absolute inset-y-0 left-0 flex items-center pl-3 text-green-600"
                   >
                     <CheckIcon class="h-5 w-5" aria-hidden="true" />
                   </span>

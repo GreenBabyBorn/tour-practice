@@ -3,7 +3,7 @@
 export default defineNuxtConfig({
   // devtools: { enabled: true },
   $development: {
-    modules: ["nuxt-headlessui"],
+    modules: ["nuxt-headlessui", '@pinia/nuxt'],
     runtimeConfig: {
       public: {
         backendUrl: "http://localhost:8000",

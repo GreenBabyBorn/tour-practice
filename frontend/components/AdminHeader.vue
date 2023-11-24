@@ -4,7 +4,7 @@
       <div class="flex lg:flex-1">
         <NuxtLink to="/" class="-m-1.5 p-1.5">
           <span class="sr-only">ТурПрактик</span>
-          <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=green&shade=600" alt="" />
+          <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=green&shade=900" alt="" />
         </NuxtLink>
       </div>
       <div class="flex lg:hidden">
@@ -18,9 +18,8 @@
         </button>
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
-        <NuxtLink to="/tours" class="text-sm font-semibold leading-6 text-gray-900">Горящие туры</NuxtLink>
-        <NuxtLink to="/reviews" class="text-sm font-semibold leading-6 text-gray-900">Отзывы</NuxtLink>
-        <NuxtLink to="/about" class="text-sm font-semibold leading-6 text-gray-900">О компании</NuxtLink>
+        <NuxtLink to="/admin/tours" class="text-sm font-semibold leading-6 text-gray-900">Туры</NuxtLink>
+        <NuxtLink to="/admin/reviews" class="text-sm font-semibold leading-6 text-gray-900">Отзывы</NuxtLink>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
         <NuxtLink v-if="!isLoggedIn" to="/cabinet/login" class="text-sm font-semibold leading-6 text-gray-900">Войти <span
@@ -104,15 +103,13 @@
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-gray-500/10">
             <div class="space-y-2 py-6">
-              <NuxtLink @click="handleMenu()" to="/tours"
+              <NuxtLink @click="handleMenu()" to="/admin/tours"
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                 Горящие туры</NuxtLink>
-              <NuxtLink @click="handleMenu()" to="/reviews"
+              <NuxtLink @click="handleMenu()" to="/admin/reviews"
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                 Отзывы</NuxtLink>
-              <NuxtLink @click="handleMenu()" to="/about"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                О компании</NuxtLink>
+              
             </div>
             <div class="py-6">
               <NuxtLink v-if="!isLoggedIn" to="/cabinet/login" @click="handleMenu()"

@@ -1,50 +1,43 @@
 <template>
-  <div
-    class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
-    aria-hidden="true"
-  >
+  <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+    aria-hidden="true">
     <div
       class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#80ecff] to-[#89fcb5] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
       style="
-        clip-path: polygon(
-          74.1% 44.1%,
-          100% 61.6%,
-          97.5% 26.9%,
-          85.5% 0.1%,
-          80.7% 2%,
-          72.5% 32.5%,
-          60.2% 62.4%,
-          52.4% 68.1%,
-          47.5% 58.3%,
-          45.2% 34.5%,
-          27.5% 76.7%,
-          0.1% 64.9%,
-          17.9% 100%,
-          27.6% 76.8%,
-          76.1% 97.7%,
-          74.1% 44.1%
-        );
-      "
-    />
+                      clip-path: polygon(
+                        74.1% 44.1%,
+                        100% 61.6%,
+                        97.5% 26.9%,
+                        85.5% 0.1%,
+                        80.7% 2%,
+                        72.5% 32.5%,
+                        60.2% 62.4%,
+                        52.4% 68.1%,
+                        47.5% 58.3%,
+                        45.2% 34.5%,
+                        27.5% 76.7%,
+                        0.1% 64.9%,
+                        17.9% 100%,
+                        27.6% 76.8%,
+                        76.1% 97.7%,
+                        74.1% 44.1%
+                      );
+                    " />
   </div>
   <section class="max-w-4xl mt-24 mx-auto flex flex-col lg:px-8 px-4">
-    <h2
-      class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center"
-    >
+    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">
       Отзывы
     </h2>
-    <div class="flex flex-col mt-16">
-      <div class="flex flex-col gap-y-1">
-        <h3 class="text-lg font-bold">Пупкин Вася Васильевич</h3>
-        <span>01.01.2023</span>
+    <TransitionGroup name="reviews" tag="div" class="grid lg:grid-cols-2 grid-cols-1 mt-16 gap-x-10 gap-y-6">
+      <div v-for="review in (reviews as Review[])" :key="review.id" class="flex flex-col gap-y-1">
+        <h3 class="text-lg font-bold">{{ review.name }}</h3>
+       
         <p class="leading-normal">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Et qui
-          asperiores error, incidunt at similique! Voluptates unde eligendi nam
-          quos corporis doloribus? Consequatur repudiandae inventore magnam
-          saepe praesentium numquam eveniet!
+          {{ review.content }}
         </p>
+        <span class="self-end">{{ new Date(Date.parse(review.created_at)).toLocaleDateString() }}</span>
       </div>
-    </div>
+    </TransitionGroup>
   </section>
 
   <div class="isolate px-6 py-24 sm:py-32 lg:px-8">
@@ -53,12 +46,15 @@
         Напишите отзыв
       </h2>
       <p class="mt-2 text-lg leading-8 text-gray-600">
-        Вы можете оставить отыв о работе нашей компании
+        Вы можете оставить отзыв о работе нашей компании
+      </p>
+      <p v-if="!isLoggedIn" class="mt-2 text-lg leading-8 text-gray-600">
+        Чтобы оставить отзыв <NuxtLink class="text-green-500" to="/cabinet/login">войдите</NuxtLink> в систему
       </p>
     </div>
-    <form action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
+    <form @submit.prevent="createReview()" v-if="isLoggedIn" class="mx-auto mt-16 max-w-xl sm:mt-10">
       <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-        <div>
+        <!-- <div>
           <label
             for="first-name"
             class="block text-sm font-semibold leading-6 text-gray-900"
@@ -73,8 +69,8 @@
               class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
             />
           </div>
-        </div>
-        <div>
+        </div> -->
+        <!-- <div>
           <label
             for="last-name"
             class="block text-sm font-semibold leading-6 text-gray-900"
@@ -106,7 +102,7 @@
               class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
             />
           </div>
-        </div>
+        </div> -->
         <!-- <div	iv class="sm:col-span-2">
           <label
             for="phone-number"
@@ -140,59 +136,41 @@
           </div>
         </div> -->
         <div class="sm:col-span-2">
-          <label
-            for="message"
-            class="block text-sm font-semibold leading-6 text-gray-900"
-            >Отзыв</label
-          >
+          <label for="message" class="block text-sm font-semibold leading-6 text-gray-900">Отзыв</label>
           <div class="mt-2.5">
-            <textarea
-              name="message"
-              id="message"
-              rows="4"
-              class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
-            />
+            <textarea v-model="data.content" name="message" id="message" rows="4"
+              class=" block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6" />
           </div>
+
         </div>
         <SwitchGroup as="div" class="flex gap-x-4 sm:col-span-2">
           <div class="flex h-6 items-center">
-            <Switch
-              v-model="agreed"
-              :class="[
-                agreed ? 'bg-green-600' : 'bg-gray-200',
-                'flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600',
-              ]"
-            >
-              <span class="sr-only"
-                >Я соглашаюсь с пользовательским&nbsp;соглашением</span
-              >
-              <span
-                aria-hidden="true"
-                :class="[
-                  agreed ? 'translate-x-3.5' : 'translate-x-0',
-                  'h-4 w-4 transform rounded-full bg-white shadow-sm ring-1 ring-gray-900/5 transition duration-200 ease-in-out',
-                ]"
-              />
+            <Switch v-model="agreed" :class="[
+              agreed ? 'bg-green-600' : 'bg-gray-200',
+              'flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600',
+            ]">
+              <span class="sr-only">Я соглашаюсь с пользовательским&nbsp;соглашением</span>
+              <span aria-hidden="true" :class="[
+                agreed ? 'translate-x-3.5' : 'translate-x-0',
+                'h-4 w-4 transform rounded-full bg-white shadow-sm ring-1 ring-gray-900/5 transition duration-200 ease-in-out',
+              ]" />
             </Switch>
           </div>
           <SwitchLabel class="text-sm leading-6 text-gray-600">
             Я соглашаюсь с
             {{ " " }}
-            <a href="#" class="font-semibold text-green-600"
-              >пользовательским&nbsp;соглашением</a
-            >.
+            <a href="#" class="font-semibold text-green-600">пользовательским&nbsp;соглашением</a>.
           </SwitchLabel>
         </SwitchGroup>
       </div>
       <div class="mt-10">
-        <button
-          :disabled="!agreed"
-          type="submit"
-          class="block w-full rounded-md bg-green-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 disabled:opacity-50"
-        >
+        <button :disabled="!agreed"
+          class="block w-full rounded-md bg-green-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 disabled:opacity-50">
           Отправить
         </button>
+
       </div>
+      <!-- {{ validationErrors.value }} -->
     </form>
   </div>
 </template>
@@ -200,6 +178,43 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { Switch, SwitchGroup, SwitchLabel } from "@headlessui/vue";
+import { type Review } from "../stores/reviews";
 
+const reviewStore = useReviewsStore()
+
+const { isLoggedIn } = useAuth();
 const agreed = ref(false);
+
+const { data: reviews } = await useLarafetch("/api/reviews");
+reviewStore.reviews = <Review[]>reviews.value;
+
+const data = reactive({ content: '' });
+
+const {
+  submit: createReview,
+  inProgress,
+  validationErrors,
+} = useSubmit(() => $larafetch("/api/reviews", { method: "post", body: data }), {
+  onSuccess: (result) => {
+    reviewStore.addReview(result)
+    console.log("Review created successfully", result)
+  }
+
+});
+
 </script>
+
+
+<style>
+.reviews-enter-active,
+.reviews-leave-active {
+  transition: all 0.5s ease;
+}
+
+.reviews-enter-from,
+.reviews-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+
+}
+</style>

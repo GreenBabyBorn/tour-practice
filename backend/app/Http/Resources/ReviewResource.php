@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ReviewResource extends JsonResource
@@ -16,7 +17,7 @@ class ReviewResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'name' => User::find($this->userId)->name,
             'content' => $this->content,
             'created_at' => $this->created_at,
         ];

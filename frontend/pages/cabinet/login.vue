@@ -103,7 +103,8 @@
 
 <script setup lang="ts">
 definePageMeta({
-  layout: "admin",
+  layout: "empty",
+  middleware: ["guest"],
 });
 
 const router = useRouter();

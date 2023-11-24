@@ -126,7 +126,7 @@
 
 <script setup lang="ts">
 definePageMeta({
-  layout: "admin",
+  layout: "empty",
   middleware: ["guest"],
 });
 
@@ -145,6 +145,6 @@ const {
   inProgress,
   validationErrors: errors,
 } = useSubmit(() => register(data), {
-  onSuccess: () => router.push("/dashboard"),
+  onSuccess: () => router.push("/cabinet"),
 });
 </script>

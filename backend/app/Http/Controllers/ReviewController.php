@@ -29,8 +29,9 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
+
         $review = Review::create([
-            'name' => $request->name,
+            'userId' => auth()->user()->id,
             'content' => $request->content,
         ]);
         return new ReviewResource($review);
@@ -57,7 +58,7 @@ class ReviewController extends Controller
     public function update(Request $request, Review $review)
     {
         $review->update([
-            'name' => $request->name,
+            // 'name' => $request->name,
             'content' => $request->content,
         ]);
         return new ReviewResource($review);

@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <!-- Markup shared across all pages, ex: NavBar -->
-
+  <AdminHeader></AdminHeader>
+  <main>
     <slot />
-  </div>
+  </main>
 </template>
 <script setup lang="ts"></script>
