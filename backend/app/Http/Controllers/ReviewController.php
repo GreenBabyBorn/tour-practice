@@ -31,7 +31,7 @@ class ReviewController extends Controller
     {
 
         $review = Review::create([
-            'userId' => auth()->user()->id,
+            'user_id' => auth()->user()->id,
             'content' => $request->content,
         ]);
         return new ReviewResource($review);

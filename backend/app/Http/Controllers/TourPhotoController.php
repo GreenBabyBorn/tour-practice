@@ -6,6 +6,7 @@ use App\Models\Tour;
 use App\Models\TourPhoto;
 use Illuminate\Http\Request;
 use App\Http\Resources\TourPhotoResource;
+use App\Http\Resources\TourResource;
 use Illuminate\Support\Facades\Storage;
 
 class TourPhotoController extends Controller
@@ -34,7 +35,7 @@ class TourPhotoController extends Controller
             'filename' => $filename,
             'path' => asset('storage') . '/' . $filename,
         ]);
-        return new TourPhotoResource($photo);
+        return new TourResource($tour);
     }
 
     /**

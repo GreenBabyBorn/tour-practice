@@ -13,7 +13,8 @@ class Tour extends Model
         'name',
         'from',
         'to',
-        'date',
+        'dateTo',
+        'dateFrom',
         'cost',
     ];
     public function photos()

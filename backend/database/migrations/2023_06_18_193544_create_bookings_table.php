@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users', 'id');
             $table->foreignId('tour_id')->constrained('tours', 'id');
             $table->timestamps();
         });

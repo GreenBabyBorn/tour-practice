@@ -17,7 +17,7 @@ class ReviewResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => User::find($this->userId)->name,
+            'name' => User::find($this->user_id)->name,
             'content' => $this->content,
             'created_at' => $this->created_at,
         ];

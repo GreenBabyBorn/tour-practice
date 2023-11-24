@@ -1,10 +1,12 @@
 <?php
 
-use App\Models\Review;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TourController;
+use App\Http\Controllers\TourPhotoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +33,9 @@ Route::get('/reviews/{review}', [ReviewController::class, 'show']);
 Route::put('/reviews/{review}', [ReviewController::class, 'update'])->middleware(['auth:sanctum']);
 Route::post('/reviews', [ReviewController::class, 'store'])->middleware(['auth:sanctum']);
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware(['auth:sanctum']);
+
+Route::get('/tours', [TourController::class, 'index']);
+Route::get('/tours/{tour}', [TourController::class, 'show']);
+Route::post('/tours', [TourController::class, 'store'])->middleware(['auth:sanctum']);
+Route::post('/tours/{tour}/photos', [TourPhotoController::class, 'store'])->middleware(['auth:sanctum']);
+Route::delete('/tours/{tour}', [TourController::class, 'destroy'])->middleware(['auth:sanctum', 'admin']);

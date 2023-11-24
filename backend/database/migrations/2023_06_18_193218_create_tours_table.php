@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('from');
             $table->string('to');
-            $table->date('date');
+            $table->string('dateFrom');
+            $table->string('dateTo');
             $table->integer('cost');
             $table->timestamps();
         });

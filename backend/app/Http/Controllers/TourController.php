@@ -35,7 +35,8 @@ class TourController extends Controller
                 'name' => $request->name,
                 'from' => $request->from,
                 'to' => $request->to,
-                'date' => $request->date,
+                'dateFrom' => $request->dateFrom,
+                'dateTo' => $request->dateTo,
                 'cost' => $request->cost,
             ]
         );
