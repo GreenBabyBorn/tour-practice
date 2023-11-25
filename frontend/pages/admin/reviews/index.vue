@@ -59,12 +59,12 @@ const deleteReview = (review: Review) => {
                 </td>
                 <td class="whitespace-nowrap px-6 py-4 flex gap-2">
                   <NuxtLink
-                    class="rounded-xl bg-green-400 font-medium py-2 px-4"
+                    class="rounded-xl bg-green-600 text-white font-medium py-2 px-4"
                     :to="'/admin/reviews/' + review.id"
                     >Редактировать</NuxtLink
                   >
                   <button
-                    class="rounded-xl bg-red-400 font-medium py-2 px-4"
+                    class="rounded-xl bg-red-600 text-white font-medium py-2 px-4"
                     @click="deleteReview(review)"
                   >
                     Удалить

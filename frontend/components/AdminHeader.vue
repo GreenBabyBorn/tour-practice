@@ -18,6 +18,7 @@
         </button>
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
+        <NuxtLink to="/admin" class="text-sm font-semibold leading-6 text-gray-900">Панель управления</NuxtLink>
         <NuxtLink to="/admin/tours" class="text-sm font-semibold leading-6 text-gray-900">Туры</NuxtLink>
         <NuxtLink to="/admin/reviews" class="text-sm font-semibold leading-6 text-gray-900">Отзывы</NuxtLink>
       </div>

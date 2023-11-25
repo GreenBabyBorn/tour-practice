@@ -3,7 +3,10 @@
 export default defineNuxtConfig({
   // devtools: { enabled: true },
   $development: {
-    modules: ["nuxt-headlessui", '@pinia/nuxt'],
+    modules: ["nuxt-headlessui", '@pinia/nuxt', 'nuxt-simple-sitemap'],
+    site: {
+      url: 'https://tourpractice.greenbabyborn.ru',
+    },
     runtimeConfig: {
       public: {
         backendUrl: "http://localhost:8000",

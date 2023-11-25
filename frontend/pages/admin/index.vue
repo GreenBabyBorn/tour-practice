@@ -16,7 +16,7 @@ const userRole = ["Пользователь", "Администратор"];
     <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
       Панель управления
     </h2>
-    <p class="mt-4">Добро пожаловать! Здесь вы можете управлять сайтом.</p>
+    
     <div class="flex flex-col mt-4">
       <h3 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
         Пользователи
